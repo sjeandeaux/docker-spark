@@ -20,4 +20,5 @@ RUN yum -y remove tar
 VOLUME /var/lib/job
 
 #GO...
-CMD ["spark-shell"]
+ENTRYPOINT ["spark-submit"]
+CMD ["--help"]

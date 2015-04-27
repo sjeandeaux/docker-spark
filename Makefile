@@ -7,10 +7,10 @@ littleName = spark
 publish =
 environment =
 command =
-
+volume = -v $(current_dir)/job:/var/lib/job:ro
  
 build:
-	docker build -t $(tag) .
+	docker build -t $(tag) -f $(shell docker-proxy-file) .
 
 rm:
 	docker rm -f $(littleName)
@@ -25,7 +25,10 @@ exec:
 	docker exec -ti $(littleName) /bin/bash
 
 run:
-	docker run -d --name $(littleName) $(publish) $(tag) $(command)
+	docker run -d --name $(littleName) $(publish) $(volume) $(tag) $(command)
 
 run-ti:
-	docker run --rm -ti --name $(littleName) $(publish) $(tag) $(command)
+	docker run --rm -ti --name $(littleName) $(publish) $(volume) $(tag) $(command)
+
+run-bash:
+	docker run -ti --name $(littleName) --entrypoint="/bin/bash" $(publish) $(volume) $(tag) $(command)
