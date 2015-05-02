@@ -19,6 +19,7 @@ RUN yum -y remove tar
 #where you put your jar
 VOLUME /var/lib/job
 
+EXPOSE 4040
 #GO...
 ENTRYPOINT ["spark-submit"]
 CMD ["--help"]
