@@ -11,7 +11,7 @@ docker build -t sjeandeaux/docker-spark .
 ```shell
 docker run -ti --rm=true  --name spark  \
       -v $(pwd)/job:/var/lib/job:ro \
-      - p 4040:4040 \
+      -p 4040:4040 \
       sjeandeaux/docker-spark \
       --class org.apache.spark.examples.SparkPi \
       --master local[8] \
