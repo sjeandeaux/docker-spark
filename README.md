@@ -11,12 +11,12 @@ docker build -t sjeandeaux/docker-spark .
 ```shell
 docker run -ti --rm=true  --name spark  \
       -v $(pwd)/job:/var/lib/job:ro \
+      - p 4040:4040 \
       sjeandeaux/docker-spark \
       --class org.apache.spark.examples.SparkPi \
       --master local[8] \
       /var/lib/job/examples.jar 10000
 
-host = $(shell if [ -n "$(shell which boot2docker)" ]; then boot2docker ip; else echo 127.0.0.1; fi)
 #you can open your web browser http://$(host):4040/ 
 
 ```
