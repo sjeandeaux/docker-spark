@@ -32,3 +32,6 @@ run-ti:
 
 run-bash:
 	docker run -ti --name $(littleName) --entrypoint="/bin/bash" $(publish) $(volume) $(tag) $(command)
+
+run-example:
+	docker run -ti --rm=true --name $(littleName) $(publish) $(volume) $(tag) --class org.apache.spark.examples.SparkPi --master local[8] /var/lib/job/examples.jar 100
